@@ -11,7 +11,7 @@ int main() {
   bool exercise1 = true;
   if(exercise1) {
     getline(cin, str);
-    poly1.set(str); poly2.set(str);
+    poly1.set(str);
     if(poly1.errorflag == 1) {
       cout << "error\nerror\nerror";
       return 0;
@@ -19,12 +19,13 @@ int main() {
     double x;
     cin >> x;
     double res = poly1.getfunc(x);
-    poly2.prt();
+    poly1.prt();
     poly1.diff();
     cout << endl; 
     poly1.prt();
     cout << endl;
-    Tools :: output(res);
+    if(Tools :: checkEq(res, 0.0, 1e-7)) cout << "0.0000";
+    else Tools :: output(res);
   } else {
     getline(cin, str1);
     getline(cin, str2);
