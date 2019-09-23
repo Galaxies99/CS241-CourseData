@@ -28,12 +28,6 @@ CS241 Homework Source Code
 其中，对于多项式的储存的方法为：将（指数，系数）二元组 (a, k) 存入 vector 中，再按 a 的大小排序。
 
 本周题目主要难点：**字符串处理★★★**，**多项式存储方法★☆**， **多项式除法★★**
-$$
-
-$$
-
-
-
 
 ### week03：多项式的牛顿迭代法与线性方程组的高斯消元
 
@@ -43,8 +37,6 @@ $$
 
 - f(a)f(b) < 0
 - $\forall x \in [a, b], f'(x) \not= 0$
-- $\forall x \in (a, b),  sgn(f''(x)) = C$  ，其中 $C$ 为常数，$sgn(x)$ 为符号函数。
-- \forall x \in [a, b] f'(x) \not= 0
 - $\forall x \in (a, b),  sgn(f''(x)) = C$  ，其中 $C$ 为常数，$sgn(x)$ 为符号函数。
 - $a - \frac{f(a)}{f'(a)} \leq b, b - \frac{f(b)}{f'(b)} \geq a$
 
