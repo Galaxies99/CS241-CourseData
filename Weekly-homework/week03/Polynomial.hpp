@@ -192,7 +192,7 @@ class Polynomial {
       double res = 0;
       for (int i = 0; i < p.size(); ++ i) {
         double t = p[i].second;
-        for (int j = 0; j <  p[i].first; ++ j)
+        for (int j = 0; j < p[i].first; ++ j)
           t = t * x;
         res += t;
       }
