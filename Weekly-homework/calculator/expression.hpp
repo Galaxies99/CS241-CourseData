@@ -22,7 +22,7 @@ class Expression {
 
 void Expression :: parse(const std :: string &str) {
   // TODO parse
-  
+    
 }
 
 # endif
