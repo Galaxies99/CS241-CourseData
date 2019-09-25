@@ -7,8 +7,12 @@ using namespace std;
 int main() {
   string str;
   cin >> str;
-  Expression expr(str);
-  expr.output(cout);
+  try {
+    Expression expr(str);
+    expr.output(cout);
+  } catch(...) {
+    cerr << "Expression Error!\n";
+  }
   return 0;
 }
 
