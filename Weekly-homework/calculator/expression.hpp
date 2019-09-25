@@ -25,6 +25,7 @@ namespace Expression_Calculate {
       case '-': return a - b;
       case '*': return a * b;
       case '/': return a / b;
+      case '^': return a ^ b;
       default: throw Expression_Invalid();
     } 
   }

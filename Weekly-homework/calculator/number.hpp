@@ -320,8 +320,9 @@ Number operator ^ (const Number &a, const Number &b) {
     x = x * x;
     y >>= 1;
   } 
-  if(b.sgn) return Number(1) / res;
-  else return res; 
+  if(b.sgn) res = Number(1) / res;
+  res.refresh_digit();
+  return res; 
 }
 
 # endif
