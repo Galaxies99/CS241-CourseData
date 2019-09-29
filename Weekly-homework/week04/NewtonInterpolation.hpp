@@ -84,6 +84,7 @@ class NewtonInterpolation {
           ok = 1;
         } 
       }
+      if(ok == 0) std :: cout << "0.0000";
     } 
     
     
