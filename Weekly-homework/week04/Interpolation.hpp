@@ -1,9 +1,34 @@
-# ifndef _NEWTON_INTERPOLATION_HPP_
-# define _NEWTON_INTERPOLATION_HPP_
+# ifndef _INTERPOLATION_HPP_
+# define _INTERPOLATION_HPP_
 
 # include <iostream>
 # include <vector>
-# include "Polynomial.hpp"
+
+namespace Tools {
+  inline double Abs(double x) {
+    return x >= 0 ? x : -x;
+  } 
+  inline bool checkEq(double x, double y, double eps) {
+    return Abs(x - y) < eps;
+  }
+  inline bool output(double p) {
+    std :: string out = ""; 
+    int pc = p * 10000, z = p;
+    if(pc == 0) return false;
+    if(p < 0) {
+      z = -z; pc = -pc;
+      out = out + "-";
+    }
+    out = out + std :: to_string(z) + ".";
+    pc -= z * 10000;
+    if(pc < 10) out = out + "000";
+    else if(pc < 100) out = out + "00";
+    else if(pc < 1000) out = out + "0";
+    out = out + std :: to_string(pc);
+    std :: cout << out;
+    return true;
+  }
+}
 
 class NewtonInterpolation {
   private:
@@ -28,6 +53,30 @@ class NewtonInterpolation {
       for (int i = 1; i < n; ++ i)
         for (int j = i; j < n; ++ j)
           tab[i][j] = (tab[i - 1][j] - tab[i - 1][j - 1]) / (p[j].first - p[j - i].first);
+      
+      std :: vector <double> t;
+      x.resize(n); poly.resize(n); t.resize(n);
+      poly[0] = tab[0][0]; x[0] = 1.0;
+      for (int i = 1; i < n; ++ i) x[i] = poly[i] = 0; 
+      for (int i = 1; i < n; ++ i) {
+        for (int j = 0; j < n; ++ j) t[j] = 0;
+        for (int j = 1; j < n; ++ j) t[j] = x[j - 1];
+        for (int j = 0; j < n; ++ j) t[j] = t[j] - p[i - 1].first * x[j];
+        for (int j = 0; j < n; ++ j) x[j] = t[j];
+        for (int j = 0; j < n; ++ j) poly[j] += tab[i][i] * x[j]; 
+      }
+    }
+    
+    void initialize_same(const std :: vector < std :: pair <double, double> > &_p) {
+      p = _p; n = p.size();
+      double D;
+      if(n > 1) D = p[n - 1].first - p[n - 2].first;
+      tab.resize(n);
+      for (int i = 0; i < n; ++ i) tab[i].resize(n);
+      for (int i = 0; i < n; ++ i) tab[0][i] = p[i].second;
+      for (int i = 1; i < n; ++ i)
+        for (int j = i; j < n; ++ j)
+          tab[i][j] = (tab[i - 1][j] - tab[i - 1][j - 1]) / (D * i);
       
       std :: vector <double> t;
       x.resize(n); poly.resize(n); t.resize(n);
@@ -86,7 +135,6 @@ class NewtonInterpolation {
       }
       if(ok == 0) std :: cout << "0.0000";
     } 
-    
     
     ~ NewtonInterpolation() = default;
 };
