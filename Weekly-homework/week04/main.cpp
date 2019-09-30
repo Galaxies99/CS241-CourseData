@@ -73,7 +73,6 @@ namespace Parse {
 } 
 
 int main() {
-  freopen("test.in","r",stdin);
   string str;
   double x;
   getline(cin, str);
