@@ -80,7 +80,7 @@ class GraphParsor {
     std :: vector < SubGraph > ans;
     int mx_vid;
     bool *vvalid;
-    bool *vis;
+    bool *vis, *rvis;
     bool *un_mark; 
     std :: vector <int> *G, *Gr; 
     
@@ -114,6 +114,19 @@ class GraphParsor {
       return std :: make_pair(a, b);
     }
     
+    bool chkTreeStrong(int x, int fa = -1) {
+      rvis[x] = 1;
+      bool c = (G[x].size() <= 2);
+      if(fa == -1) c &= (Gr[x].size() == 0);
+      else c &= (Gr[x].size() == 1 && Gr[x][0] == fa);
+      for (int i = 0; i < G[x].size(); ++ i) {
+        if(rvis[G[x][i]]) return false;
+        bool t = chkTreeStrong(G[x][i], x);
+        c &= t;
+      }
+      return c; 
+    }
+    
     void parse() {
       for (int i = 0; i < edge.size(); ++ i) {
         if(edge[i].second == -1) {
@@ -124,8 +137,6 @@ class GraphParsor {
         Gr[edge[i].first].push_back(edge[i].second);
         un_mark[edge[i].first] = 1;
       }
-      // for (int i = 0; i <= mx_vid; ++ i) 
-      //   if(un_mark[i] == 0 && vvalid[i]) edge.push_back(std :: make_pair(i, -1));
       for (int i = 0; i < edge.size(); ++ i) {
         if(edge[i].second != -1) continue;
         int x = edge[i].first;
@@ -137,6 +148,19 @@ class GraphParsor {
         std :: pair < std :: pair <int, int>, bool > t = chkBinary(x);
         if(t.second == false) ans.push_back(SubGraph(Tree, t.first.first, t.first.second));
         else ans.push_back(SubGraph(Binary, t.first.first, t.first.second));
+      }
+      for (int i = 0; i <= mx_vid; ++ i) {
+        if(vvalid[i] && !un_mark[i] && !vis[i]) {
+          rvis = new bool[mx_vid + 3];
+          for (int j = 0; j <= mx_vid; ++ j) rvis[j] = vis[j];
+          bool flag = chkTreeStrong(i);
+          if(flag == true) {
+            std :: pair < std :: pair <int, int>, bool > t = chkBinary(i);
+            if(t.second == false) ans.push_back(SubGraph(Tree, t.first.first, t.first.second));
+            else ans.push_back(SubGraph(Binary, t.first.first, t.first.second));
+          }
+          if(rvis != nullptr) delete [] rvis;
+        }
       }
       for (int i = 0; i <= mx_vid; ++ i) {
         if(vvalid[i] && !vis[i]) {
@@ -171,7 +195,9 @@ class GraphParsor {
     }
     
     void output(std :: ostream& os) {
-      os << "We have recognized " << ans.size() << " graphs.";
+      os << "We have recognized " << ans.size() << " graph";
+      if(ans.size() >= 2) os << "s";
+      os << "."; 
       for (int i = 0; i < ans.size(); ++ i) {
         os << "\n";
         ans[i].prt(os);
