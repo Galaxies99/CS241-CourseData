@@ -171,7 +171,7 @@ class GraphParsor {
     }
     
     void output(std :: ostream& os) {
-      os << "We have recognize " << ans.size() << " graphs.";
+      os << "We have recognized " << ans.size() << " graphs.";
       for (int i = 0; i < ans.size(); ++ i) {
         os << "\n";
         ans[i].prt(os);
