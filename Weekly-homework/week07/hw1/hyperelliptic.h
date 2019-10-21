@@ -7,6 +7,7 @@
 # include <cmath>
 
 using namespace Graph_lib;
+using namespace std;
 
 class Hyperelliptic : public Shape {
   private:
