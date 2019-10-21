@@ -9,7 +9,7 @@ Weekly-homework 文件夹内的 headfiles 文件夹是所有写过的头文件�
 
 里面还有一个calculator文件夹是随便写的计算器
 
-目前更新了六周的小作业啦~（小作业内附有解答及代码）
+目前更新了七周的小作业啦~（小作业内附有解答及代码）
 
 作业地址：https://www.educoder.net/
 
