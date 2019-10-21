@@ -42,5 +42,7 @@ int main() {
     }
 
     win.wait_for_button();
+
+    for (int i = 0; i < 8; ++ i) delete tri[i];
     return 0;
 }
