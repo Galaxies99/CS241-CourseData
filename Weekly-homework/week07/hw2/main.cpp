@@ -17,7 +17,7 @@ int main() {
 
     // The colors
     Color colors[8] = {Color :: red, Color :: blue, Color :: green, Color :: yellow,
-                       Color :: white, Color :: black, Color :: magenta, Color ::cyan};
+                       Color :: white, Color :: black, Color :: magenta, Color :: cyan};
 
     /******************************** Math Calculation ***********************************/
     double C = sqrt(A * A + B * B);

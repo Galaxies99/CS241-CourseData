@@ -1,6 +1,6 @@
 # include "Binary_tree.h"
 
-Binary_tree :: Binary_tree(int levels, int print_d) : levels(levels), print_d(print_d) { calculate(); }
+Binary_tree :: Binary_tree(int levels, int print_d, int offset) : levels(levels), print_d(print_d), offset(offset) { calculate(); }
 
 void Binary_tree :: resetLevels(int newLevels) {
   levels = newLevels;
@@ -51,8 +51,12 @@ void Binary_tree :: calculate() {
 void Binary_tree :: draw_lines() const {
   if(color().visibility()) {
     for (int i = 0; i + 1 < points.size(); i += 2)
-      fl_line(points[i].y, points[i].x + 50, points[i+1].y, points[i+1].x + 50);
-    for (int i = 0; i < nodes.size(); ++ i)
-      fl_arc(nodes[i].y - print_d / 2, nodes[i].x - print_d / 2 + 50, print_d, print_d, 0, 360);
+      fl_line(points[i].y, points[i].x + offset, points[i+1].y, points[i+1].x + offset);
+    draw_nodes();
   }
+}
+
+void Binary_tree :: draw_nodes() const {
+  for (int i = 0; i < nodes.size(); ++ i)
+    fl_arc(nodes[i].y - print_d / 2, nodes[i].x - print_d / 2 + offset, print_d, print_d, 0, 360);
 }

@@ -11,16 +11,18 @@ using namespace std;
 class Binary_tree : public Shape {
   protected:
     int levels;
-    int print_d;
+    int print_d, offset;
     vector <Point> points;
     vector <Point> nodes;
 
     Point getPoint(double ox, double oy);
     void calculate();
-    virtual void draw_lines() const;
+
+    virtual void draw_nodes() const;
+    void draw_lines() const;
 
   public:
-    Binary_tree(int levels = 0, int print_d = 16);
+    Binary_tree(int levels = 0, int print_d = 16, int offset = 50);
 
     void resetLevels(int newLevels);
 

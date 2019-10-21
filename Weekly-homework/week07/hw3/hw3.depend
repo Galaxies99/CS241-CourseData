@@ -174,7 +174,7 @@
 	"GUI.h"
 	"Graph.h"
 
-1571658236 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\trianglebinary_tree.cpp
+1571663035 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\trianglebinary_tree.cpp
 	"TriangleBinary_tree.h"
 
 1233317660 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\window.cpp
@@ -182,7 +182,7 @@
 	"Graph.h"
 	"GUI.h"
 
-1571657711 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\main.cpp
+1571658877 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\main.cpp
 	"Simple_window.h"
 	"Graph.h"
 	"Binary_tree.h"
@@ -190,12 +190,12 @@
 	"std_lib_facilities.h"
 	<iostream>
 
-1571658268 g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\binary_tree.h
+1571662981 g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\binary_tree.h
 	"Graph.h"
 	<assert.h>
 	<math.h>
 
-1571658275 g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\trianglebinary_tree.h
+1571663003 g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\trianglebinary_tree.h
 	"Binary_tree.h"
 
 1571658228 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw3\binary_tree.cpp

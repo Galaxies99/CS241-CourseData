@@ -6,11 +6,12 @@
 #include <iostream>
 
 int main() {
+    int levels;
+    cout << "Please input levels: ";
+    cin >> levels;
+
     Point tl(100, 100);
     Simple_window win(tl, 1100, 600, "BinaryTree");
-
-    int levels;
-    cin >> levels;
     Binary_tree bin(levels);
     TriangleBinary_tree bin2(levels);
 
