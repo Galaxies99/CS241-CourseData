@@ -167,7 +167,7 @@
 	<FL/Fl_Window.H>
 	"Point.h"
 
-1571644879 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw1\hyperelliptic.cpp
+1571646090 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw1\hyperelliptic.cpp
 	"hyperelliptic.h"
 
 1571023904 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw1\simple_window.cpp
@@ -177,14 +177,14 @@
 	"GUI.h"
 	"Graph.h"
 
-1571644666 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw1\main.cpp
+1571644945 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw1\main.cpp
 	"Simple_window.h"
 	"Graph.h"
 	"hyperelliptic.h"
 	"std_lib_facilities.h"
 	<iostream>
 
-1571644335 g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw1\hyperelliptic.h
+1571646113 g:\galaxieswork\cs241-coursedata\weekly-homework\week07\hw1\hyperelliptic.h
 	"Graph.h"
 	<assert.h>
 	<vector>

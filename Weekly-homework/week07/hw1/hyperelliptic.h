@@ -23,7 +23,7 @@ class Hyperelliptic : public Shape {
     Line_style ls;
 
     void calculate();
-    Point prtPoint(double ox, double oy);
+    Point zoomPoint(double ox, double oy);
     void draw_lines() const;
 
   public:
@@ -31,7 +31,6 @@ class Hyperelliptic : public Shape {
                   int zoom = 1, Point center = Point(300, 200));
 
     void resetN(int newN);
-    void draw() const;
 
     ~ Hyperelliptic() { };
 };

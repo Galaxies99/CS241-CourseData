@@ -16,7 +16,7 @@ void Hyperelliptic :: resetN(int newN) {
   calculate();
 }
 
-Point Hyperelliptic :: prtPoint(double ox, double oy) {
+Point Hyperelliptic :: zoomPoint(double ox, double oy) {
   int x = static_cast <int> (ox * zoom);
   int y = static_cast <int> (oy * zoom);
   x += center.x;
@@ -31,8 +31,8 @@ void Hyperelliptic :: calculate() {
   for (int i = 0; i <= (N >> 1); ++ i) {
     double y1 = pow(1 - pow(fabs(x / a), n), 1.0 / m) * b;
     double y2 = -y1;
-    points.push_back(prtPoint(x, y1));
-    if(i != 0 && i != (N >> 1)) points.push_back(prtPoint(x, y2));
+    points.push_back(zoomPoint(x, y1));
+    if(i != 0 && i != (N >> 1)) points.push_back(zoomPoint(x, y2));
     x += step;
   }
 }
@@ -44,12 +44,4 @@ void Hyperelliptic :: draw_lines() const {
         fl_line(points[i].x, points[i].y, points[j].x, points[j].y);
 }
 
-void Hyperelliptic :: draw() const {
-  Fl_Color oldc = fl_color();
-  fl_color(lcolor.as_int());
-  fl_line_style(ls.style(),ls.width());
-  draw_lines();
-  fl_color(oldc);
-  fl_line_style(0);
-}
 
