@@ -3,9 +3,9 @@ CS241 问题求解与实践（中文班） Course Data
 
 课件见 Slides 文件夹
 
-小作业见 Weekly-homework 文件夹
+小作业见 Weekly Homework 文件夹
 
-Weekly-homework 文件夹内的 headfiles 文件夹是所有写过的头文件的集合（还包括我无聊的时候随便写的一些头文件）
+Attachment 文件夹内是一些附件，包括 fltk 库编译后的文件，可以直接下载使用
 
 里面还有一个calculator文件夹是随便写的计算器
 
@@ -15,7 +15,7 @@ Weekly-homework 文件夹内的 headfiles 文件夹是所有写过的头文件�
 
 
 
-Last Update on Oct. 14th.
+Last Update on Oct. 26th.
 
 
 
