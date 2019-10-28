@@ -5,7 +5,6 @@
 using namespace std;
 
 int main() {
-  freopen("test.in", "r", stdin);
   bool exercise_1 = false;
   if(exercise_1) {
     string str;
