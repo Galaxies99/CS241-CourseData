@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  bool exercise_1 = false;
+  bool exercise_1 = true;
   if(exercise_1) {
     string str;
     getline(cin, str);
