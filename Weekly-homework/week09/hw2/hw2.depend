@@ -167,12 +167,13 @@
 	<FL/Fl_Window.H>
 	"Point.h"
 
-1572974272 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week09\hw2\main.cpp
+1573227293 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week09\hw2\main.cpp
 	"Simple_window.h"
 	"Graph.h"
 	"AnalogClock.h"
 	"std_lib_facilities.h"
 	<iostream>
+	<math.h>
 
 1571023852 g:\galaxieswork\cs241-coursedata\weekly-homework\week09\hw2\simple_window.h
 	"GUI.h"
@@ -193,6 +194,6 @@
 	"Graph.h"
 	"GUI.h"
 
-1572998184 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week09\hw2\analogclock.cpp
+1573227648 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week09\hw2\analogclock.cpp
 	"AnalogClock.h"
 

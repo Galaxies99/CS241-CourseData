@@ -167,7 +167,7 @@
 	<FL/Fl_Window.H>
 	"Point.h"
 
-1572969439 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week09\hw1\main.cpp
+1572971415 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week09\hw1\main.cpp
 	"Simple_window.h"
 	"Graph.h"
 	"BarChart.h"
@@ -193,6 +193,6 @@
 	"Graph.h"
 	"GUI.h"
 
-1572969263 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week09\hw1\barchart.cpp
+1572971098 source:g:\galaxieswork\cs241-coursedata\weekly-homework\week09\hw1\barchart.cpp
 	"BarChart.h"
 

@@ -43,12 +43,14 @@
 			<Add library="kernel32" />
 			<Add directory="$(#fl.lib)" />
 		</Linker>
+		<Unit filename="Austin.csv" />
 		<Unit filename="BarChart.cpp" />
 		<Unit filename="BarChart.h" />
 		<Unit filename="GUI.cpp" />
 		<Unit filename="GUI.h" />
 		<Unit filename="Graph.cpp" />
 		<Unit filename="Graph.h" />
+		<Unit filename="NewYork.csv" />
 		<Unit filename="Point.h" />
 		<Unit filename="Simple_window.cpp" />
 		<Unit filename="Simple_window.h" />

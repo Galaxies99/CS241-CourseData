@@ -3,6 +3,9 @@
 # include "AnalogClock.h"
 # include "std_lib_facilities.h"
 # include <iostream>
+# include <math.h>
+
+double PI = acos(-1.0);
 
 int main() {
   Point tl(100, 100);
@@ -12,6 +15,5 @@ int main() {
   win.attach(cl);
 
   win.wait_for_button();
-
   return 0;
 }
