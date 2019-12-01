@@ -7,13 +7,13 @@ CS241 问题求解与实践（中文班） Course Data
 
 里面还有一个calculator文件夹是随便写的计算器
 
-目前更新了十周的小作业啦~（小作业内附有解答及代码）
+小作业更新已经完成，包含一次期末小作业。
 
 作业地址：https://www.educoder.net/
 
+期末大作业正在进行中……
 
-
-Last Update on Nov. 11th.
+Last Update on Dec. 1st.
 
 
 
