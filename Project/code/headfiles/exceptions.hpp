@@ -89,4 +89,13 @@ class No_Data_Error : public Exception {
     ~ No_Data_Error() = default;
 };
 
+class Matrix_Error : public Exception {
+  public:
+    Matrix_Error() = default;
+    const char* what() const {
+      return "Matrix operation error!";
+    }
+    ~ Matrix_Error() = default;
+};
+
 # endif
