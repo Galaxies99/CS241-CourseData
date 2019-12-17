@@ -29,7 +29,7 @@ int main() {
     return 1;
   }
   
-  cout << "Read data from \"" << station_name << "_pre.dat\"successfully!\n\n";
+  cout << "Read data from \"" << station_name << "_pre.dat\" successfully!\n\n";
   Data_Selection_Testing :: output_test(pl);
   
   cout << "\nFiltering ...\n";

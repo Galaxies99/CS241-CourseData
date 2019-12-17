@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="data_visualization" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/data_visualization" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/data_visualization" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-s" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-DWIN32" />
+			<Add option="-mms-bitfields" />
+			<Add directory="$(#fl.include)" />
+		</Compiler>
+		<Linker>
+			<Add library="fltk" />
+			<Add library="ole32" />
+			<Add library="uuid" />
+			<Add library="comctl32" />
+			<Add library="wsock32" />
+			<Add library="m" />
+			<Add library="gdi32" />
+			<Add library="user32" />
+			<Add library="kernel32" />
+			<Add directory="$(#fl.lib)" />
+		</Linker>
+		<Unit filename="../headfiles/GUI/Chart.hpp" />
+		<Unit filename="../headfiles/GUI/GUI.cpp" />
+		<Unit filename="../headfiles/GUI/GUI.h" />
+		<Unit filename="../headfiles/GUI/Graph.cpp" />
+		<Unit filename="../headfiles/GUI/Graph.h" />
+		<Unit filename="../headfiles/GUI/Point.h" />
+		<Unit filename="../headfiles/GUI/Simple_window.cpp" />
+		<Unit filename="../headfiles/GUI/Simple_window.h" />
+		<Unit filename="../headfiles/GUI/Window.cpp" />
+		<Unit filename="../headfiles/GUI/Window.h" />
+		<Unit filename="../headfiles/GUI/std_lib_facilities.h" />
+		<Unit filename="../headfiles/data_structure.hpp" />
+		<Unit filename="../headfiles/exceptions.hpp" />
+		<Unit filename="../headfiles/tools.hpp" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

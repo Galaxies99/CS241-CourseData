@@ -4,23 +4,24 @@
 # include <iostream>
 # include <ctype.h>
 # include <string>
+# include <math.h>
 
 # include "data_structure.hpp"
 # include "exceptions.hpp"
 
+using std :: vector;
 using std :: string;
 using std :: cout;
+using std :: cin;
 
-inline double abs(double x) {
-  return x >= 0 ? x : -x;
-}
+const double PI = acos(-1.0);
 
 namespace Pre_Record_Generator {
   int to_int(const string &s) {
     int ret = 0;
     for (int i = 0; i < s.length(); ++ i) {
       if (! isdigit(s[i])) throw toInt_Initialize_Error();
-      ret = ret * 10 + s[i] - '0'; 
+      ret = ret * 10 + s[i] - '0';
     }
     return ret;
   }
@@ -31,10 +32,10 @@ namespace Pre_Record_Generator {
     string ret = str.substr(0, pos); str = str.substr(pos + 1);
     return to_int(ret);
   }
-  
+
   Data <double> to_data_double(const string &s) {
     double ret = 0.0, bse = 1.0, sig = 1.0;
-    int beg = 0; 
+    int beg = 0;
     if(s.length() == 0) return Data <double> (0.0, 0);
     if(s[0] == '-') sig = -1.0, beg = 1;
     for (int i = beg; i < s.length(); ++ i) {
@@ -48,7 +49,7 @@ namespace Pre_Record_Generator {
           ret = ret + bse * (s[i] - '0');
           bse = bse * 0.1;
         }
-      } 
+      }
     }
     return Data <double> (sig * ret, 1);
   }
@@ -59,21 +60,21 @@ namespace Pre_Record_Generator {
     string ret = str.substr(0, pos); str = str.substr(pos + 1);
     return to_data_double(ret);
   }
-  
+
   Data <Wind> cut_wd(string &str) {
     static size_t pos;
     pos = str.find(',');
     if(pos == string :: npos) throw Record_Initialize_Error();
     string ret = str.substr(0, pos); str = str.substr(pos + 1);
-    
+
     if(ret == "NA") return Data <Wind> (Wind :: N, 0);
-    
+
     if(ret.length() == 0) throw Record_Initialize_Error();
     if(ret[0] != '\"') throw Record_Initialize_Error();
     if(ret[ret.length() - 1] != '\"') throw Record_Initialize_Error();
-    
+
     ret = ret.substr(1, ret.length() - 2);
-    
+
     if(ret == "N") return Data <Wind> (Wind :: N, 1);
     else if(ret == "NNE") return Data <Wind> (Wind :: NNE, 1);
     else if(ret == "NE") return Data <Wind> (Wind :: NE, 1);
@@ -92,11 +93,11 @@ namespace Pre_Record_Generator {
     else if(ret == "NNW") return Data <Wind> (Wind :: NNW, 1);
     else throw Record_Initialize_Error();
   }
-  
+
   struct Pre_Record solver(const string &s) {
     string str(s);
     int No, year, month, day, hour;
-    
+
     No = cut_int(str);
     year = cut_int(str);
     month = cut_int(str);
@@ -121,13 +122,13 @@ namespace Pre_Record_Generator {
 
 namespace Pre_Record_Filter {
   const double eps = 1e-8;
-  
+
   inline bool chk_data_valid(const Data <double> &p, int prod) {
     double p_r = (static_cast <int> (p.get_data() * prod)) / static_cast <double> (prod);
     if(abs(p_r - p.get_data()) < eps) return true;
     else return false;
   }
-  
+
   inline bool is_valid(const Pre_Record &pl) {
     /** invalid: have 'NA' in data, data missing **/
     if (pl.PM25.get_rec_type() == false ||
@@ -153,10 +154,10 @@ namespace Pre_Record_Filter {
         chk_data_valid(pl.pres, 10) == false ||
         chk_data_valid(pl.dewp, 10) == false ||
         chk_data_valid(pl.rain, 10) == false ||
-        chk_data_valid(pl.wspm, 10) == false) return false; 
+        chk_data_valid(pl.wspm, 10) == false) return false;
     return true;
   }
-  
+
   struct Record get_Record(const Pre_Record &pl) {
     Record l;
     l.No = pl.No; l.year = pl.year; l.month = pl.month;
@@ -175,10 +176,10 @@ namespace Pre_Record_Filter {
     l.wspm = oDouble(pl.wspm.get_data());
     return l;
   }
-  
+
   std :: pair <struct Record, bool> filter(const Pre_Record &pl) {
     if (is_valid(pl) == false) return std :: make_pair(Record(), 0);
-    else return std :: make_pair(get_Record(pl), 1);      
+    else return std :: make_pair(get_Record(pl), 1);
   }
 }
 
@@ -200,6 +201,140 @@ namespace Data_Selection_Testing {
         cout << '\n';
       }
     }
+  }
+}
+
+namespace Visualization_Data_Constructing {
+  int days_of_month[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+  inline bool is_leap_year(int y) {
+    return (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;
+  }
+
+  inline int get_day_of_month(int y, int m) {
+    if(m == 2) return is_leap_year(y) ? 29 : 28;
+    else return days_of_month[m];
+  }
+
+  bool check_date(int y, int m, int d) {
+    if(y <= 0 || m <= 0 || d <= 0 || m > 12 || d > 31) return false;
+    if(y < 2013 || y > 2017) return false;
+    if(y == 2013 && m < 3) return false;
+    if(y == 2017 && m > 2) return false;
+    if(d > get_day_of_month(y, m)) return false;
+    return true;
+  }
+
+  bool in_date(int y1, int m1, int d1, int y2, int m2, int d2, int y3, int m3, int d3) {
+    // without checking validation.
+    if(y1 > y2) return false;
+    if(y1 == y2 && m1 > m2) return false;
+    if(y1 == y2 && m1 == m2 && d1 > d2) return false;
+    if(y2 > y3) return false;
+    if(y2 == y3 && m2 > m3) return false;
+    if(y2 == y3 && m2 == m3 && d2 > d3) return false;
+    return true;
+  }
+
+  vector <Pre_vData> construct_pre_data(int op, const Record_List &l) {
+    int y1, m1, d1, y2, m2, d2;
+    cout << "\nInput data range (left) (yyyy mm dd): ";
+    cin >> y1 >> m1 >> d1;
+    if(check_date(y1, m1, d1) == false) throw Input_Date_out_of_bound();
+    cout << "\nInput data range (right) (yyyy mm dd): ";
+    cin >> y2 >> m2 >> d2;
+    if(check_date(y2, m2, d2) == false) throw Input_Date_out_of_bound();
+    if(y1 > y2) throw Input_Date_Invalid();
+    if(y1 == y2 && m1 > m2) throw Input_Date_Invalid();
+    if(y1 == y2 && m1 == m2 && d1 > d2) throw Input_Date_Invalid();
+
+    vector <Pre_vData> ret; ret.clear();
+    for (int i = 0; i < l.rec.size(); ++ i) {
+      if(in_date(y1, m1, d1, l.rec[i].year, l.rec[i].month, l.rec[i].day, y2, m2, d2)) {
+        int _dat, _div;
+        switch(op) {
+          case 1: _dat = l.rec[i].PM25, _div = 1; break;
+          case 2: _dat = l.rec[i].PM10, _div = 1; break;
+          case 3: _dat = l.rec[i].SO2, _div = 1; break;
+          case 4: _dat = l.rec[i].NO2, _div = 1; break;
+          case 5: _dat = l.rec[i].CO, _div = 1; break;
+          case 6: _dat = l.rec[i].O3, _div = 1; break;
+          case 7: _dat = l.rec[i].temp.get_original_data(), _div = 10; break;
+          case 8: _dat = l.rec[i].pres.get_original_data(), _div = 10; break;
+          case 9: _dat = l.rec[i].dewp.get_original_data(), _div = 10; break;
+          case 10: _dat = l.rec[i].rain.get_original_data(), _div = 10; break;
+          case 12: _dat = l.rec[i].wspm.get_original_data(), _div = 10; break;
+          default: throw Unexpected_Error();
+        }
+        ret.push_back(Pre_vData(l.rec[i].year, l.rec[i].month, l.rec[i].day, l.rec[i].hour, _dat, _div));
+      }
+    }
+    return ret;
+  }
+
+  vData construct_data(int op, const vector <Pre_vData> &pv) {
+    if(pv.size() == 0) throw No_Data_Error();
+    int n = pv.size();
+    vector <double> p;
+    if (n <= 50) {
+      for (int i = 0; i < n; ++ i) p.push_back(1.0 * pv[i].dat / pv[i].div);
+    } else {
+      int e = 1, cnt = 0;
+      while(1.0 * n / e > 400) ++ e;
+      double cur = 0.0;
+      for (int i = 0; i < n; ++ i) {
+        if(op == 10) cur = std :: max(cur, 1.0 * pv[i].dat / pv[i].div);
+        else cur += 1.0 * pv[i].dat / pv[i].div;
+        ++ cnt;
+        if(cnt == e) {
+          if(op != 10) cur /= e;
+          p.push_back(cur);
+          cur = 0, cnt = 0;
+        }
+      }
+      if(cnt) {
+        if(op != 10) cur /= cnt;
+        p.push_back(cur);
+        cur = 0, cnt = 0;
+      }
+    }
+    return vData(pv[0].year, pv[0].month, pv[0].day, pv[0].hour,
+                 pv[n-1].year, pv[n-1].month, pv[n-1].day, pv[n-1].hour, op, p);
+  }
+
+  vData construct_wind_data(int op, const Record_List &l) {
+    int y1, m1, d1, y2, m2, d2;
+    cout << "\nInput data range (left) (yyyy mm dd): ";
+    cin >> y1 >> m1 >> d1;
+    if(check_date(y1, m1, d1) == false) throw Input_Date_out_of_bound();
+    cout << "\nInput data range (right) (yyyy mm dd): ";
+    cin >> y2 >> m2 >> d2;
+    if(check_date(y2, m2, d2) == false) throw Input_Date_out_of_bound();
+    if(y1 > y2) throw Input_Date_Invalid();
+    if(y1 == y2 && m1 > m2) throw Input_Date_Invalid();
+    if(y1 == y2 && m1 == m2 && d1 > d2) throw Input_Date_Invalid();
+
+    vector <double> p; p.resize(16);
+    bool hv = 0;
+    for (int i = 0; i < 16; ++ i) p[i] = 0;
+    for (int i = 0; i < l.rec.size(); ++ i)
+      if(in_date(y1, m1, d1, l.rec[i].year, l.rec[i].month, l.rec[i].day, y2, m2, d2)) p[l.rec[i].wd] ++, hv = 1;
+    if(hv == 0) throw No_Data_Error();
+    return vData(y1, m1, d1, 0, y2, m2, d2, 23, 11, p);
+  }
+}
+
+namespace Chart_Tools {
+  string double_to_string(double x, int dig) {
+    string ret = "";
+    if(x < 0) ret += "-", x = abs(x);
+    int c = static_cast <int> (x); x -= c;
+    ret += to_string(c) + ".";
+    for (int i = 0; i < dig; ++ i) {
+      x *= 10; c = static_cast <int> (x); x -= c;
+      ret += to_string(c);
+    }
+    return ret;
   }
 }
 

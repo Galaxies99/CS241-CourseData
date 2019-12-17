@@ -44,4 +44,49 @@ class File_Error : public Exception {
     ~ File_Error() = default;
 };
 
+class Option_Error : public Exception {
+  public:
+    Option_Error() = default;
+    const char* what() const {
+      return "Option Error!";
+    }
+    ~ Option_Error() = default;
+};
+
+class Input_Date_out_of_bound : public Exception {
+  public:
+    Input_Date_out_of_bound() = default;
+    const char* what() const {
+      return "Input out of bound!";
+    }
+    ~ Input_Date_out_of_bound() = default;
+};
+
+class Input_Date_Invalid : public Exception {
+  public:
+    Input_Date_Invalid() = default;
+    const char* what() const {
+      return "Input Date Invalid!";
+    }
+    ~ Input_Date_Invalid() = default;
+};
+
+class Unexpected_Error : public Exception {
+  public:
+    Unexpected_Error() = default;
+    const char* what() const {
+      return "Unexpected Error!";
+    }
+    ~ Unexpected_Error() = default;
+};
+
+class No_Data_Error : public Exception {
+  public:
+    No_Data_Error() = default;
+    const char* what() const {
+      return "No Data!";
+    }
+    ~ No_Data_Error() = default;
+};
+
 # endif

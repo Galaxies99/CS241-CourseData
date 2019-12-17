@@ -30,7 +30,7 @@ int main() {
     cout << "Read file error! \n";
     return 1;
   }
-  cout << "Read data Successfully!\n"; 
+  cout << "Read data successfully!\n"; 
   cout << "total count: " << l.rec.size() << " Pre_Record(s).\n";
   cout << "\nStoring data ...\n";
   int n = l.rec.size();
