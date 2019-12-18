@@ -44,17 +44,25 @@ int main() {
     cout << "Select data to visualize: \n";
     for (int i = 1; i <= 12; ++ i) {
       cout << "  " << i << " - " << op_to_string[i];
+      if(i == 11) cout << " (Pie Chart)";
+      else cout << " (Line Chart)";
+      cout << ";\n";
+    }
+    for (int i = 1; i <= 12; ++ i) {
+      cout << "  " << i + 12 << " - " << op_to_string[i];
+      if(i == 11) cout << " (Radar Chart)";
+      else cout << " (Bar Chart)";
       if(i == 12) cout << ".\n";
       else cout << ";\n";
     }
     cin >> op;
-    if(op < 1 || op > 12) throw Option_Error();
+    if(op < 1 || op > 24) throw Option_Error();
   } catch(...) {
     cout << "Option error!\n";
     return 1;
   }
 
-  if(op == 11) {
+  if(op == 11 || op == 23) {
     cout << "Preparing & Constructing Data ... \n";
     vData v;
     try {
@@ -93,8 +101,9 @@ int main() {
 
     cout << "\nFigure constructing completed! \n";
 
-    int width = v.p.size() * 3 + 200;
-    width = max(width, 800);
+    int width, height;
+    if(op <= 12) width = max(static_cast <int> (v.p.size()) * 3 + 200, 800);
+    else width = 1100;
     Point tl(50, 50);
     Simple_window win(tl, width, 750, "Data Visualization");
 
@@ -103,6 +112,5 @@ int main() {
 
     win.wait_for_button();
   }
-
   return 0;
 }

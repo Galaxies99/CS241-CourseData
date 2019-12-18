@@ -253,17 +253,17 @@ namespace Visualization_Data_Constructing {
       if(in_date(y1, m1, d1, l.rec[i].year, l.rec[i].month, l.rec[i].day, y2, m2, d2)) {
         int _dat, _div;
         switch(op) {
-          case 1: _dat = l.rec[i].PM25, _div = 1; break;
-          case 2: _dat = l.rec[i].PM10, _div = 1; break;
-          case 3: _dat = l.rec[i].SO2, _div = 1; break;
-          case 4: _dat = l.rec[i].NO2, _div = 1; break;
-          case 5: _dat = l.rec[i].CO, _div = 1; break;
-          case 6: _dat = l.rec[i].O3, _div = 1; break;
-          case 7: _dat = l.rec[i].temp.get_original_data(), _div = 10; break;
-          case 8: _dat = l.rec[i].pres.get_original_data(), _div = 10; break;
-          case 9: _dat = l.rec[i].dewp.get_original_data(), _div = 10; break;
-          case 10: _dat = l.rec[i].rain.get_original_data(), _div = 10; break;
-          case 12: _dat = l.rec[i].wspm.get_original_data(), _div = 10; break;
+          case 1: case 13: _dat = l.rec[i].PM25, _div = 1; break;
+          case 2: case 14: _dat = l.rec[i].PM10, _div = 1; break;
+          case 3: case 15: _dat = l.rec[i].SO2, _div = 1; break;
+          case 4: case 16: _dat = l.rec[i].NO2, _div = 1; break;
+          case 5: case 17: _dat = l.rec[i].CO, _div = 1; break;
+          case 6: case 18: _dat = l.rec[i].O3, _div = 1; break;
+          case 7: case 19: _dat = l.rec[i].temp.get_original_data(), _div = 10; break;
+          case 8: case 20: _dat = l.rec[i].pres.get_original_data(), _div = 10; break;
+          case 9: case 21: _dat = l.rec[i].dewp.get_original_data(), _div = 10; break;
+          case 10: case 22: _dat = l.rec[i].rain.get_original_data(), _div = 10; break;
+          case 12: case 24: _dat = l.rec[i].wspm.get_original_data(), _div = 10; break;
           default: throw Unexpected_Error();
         }
         ret.push_back(Pre_vData(l.rec[i].year, l.rec[i].month, l.rec[i].day, l.rec[i].hour, _dat, _div));
@@ -274,12 +274,12 @@ namespace Visualization_Data_Constructing {
 
   vData construct_data(int op, const vector <Pre_vData> &pv) {
     if(pv.size() == 0) throw No_Data_Error();
-    int n = pv.size();
+    int n = pv.size(), e = 1;
     vector <double> p;
-    if (n <= 50) {
+    if (n <= 50 || op > 12) {
       for (int i = 0; i < n; ++ i) p.push_back(1.0 * pv[i].dat / pv[i].div);
     } else {
-      int e = 1, cnt = 0;
+      int cnt = 0;
       while(1.0 * n / e > 400) ++ e;
       double cur = 0.0;
       for (int i = 0; i < n; ++ i) {
@@ -299,7 +299,7 @@ namespace Visualization_Data_Constructing {
       }
     }
     return vData(pv[0].year, pv[0].month, pv[0].day, pv[0].hour,
-                 pv[n-1].year, pv[n-1].month, pv[n-1].day, pv[n-1].hour, op, p);
+                 pv[n-1].year, pv[n-1].month, pv[n-1].day, pv[n-1].hour, op, e, p);
   }
 
   vData construct_wind_data(int op, const Record_List &l) {
@@ -320,7 +320,7 @@ namespace Visualization_Data_Constructing {
     for (int i = 0; i < l.rec.size(); ++ i)
       if(in_date(y1, m1, d1, l.rec[i].year, l.rec[i].month, l.rec[i].day, y2, m2, d2)) p[l.rec[i].wd] ++, hv = 1;
     if(hv == 0) throw No_Data_Error();
-    return vData(y1, m1, d1, 0, y2, m2, d2, 23, 11, p);
+    return vData(y1, m1, d1, 0, y2, m2, d2, 23, op, 1, p);
   }
 }
 

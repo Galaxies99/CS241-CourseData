@@ -189,15 +189,15 @@ struct Pre_vData {
 struct vData {
   vector <double> p;
   int y1, m1, d1, h1, y2, m2, d2, h2;
-  int op;
+  int op, e;
 
   vData() { p.clear(); }
 
-  vData(int y1, int m1, int d1, int h1, int y2, int m2, int d2, int h2, int op) :
-    y1(y1), m1(m1), d1(d1), h1(h1), y2(y2), m2(m2), d2(d2), h2(h2), op(op) { p.clear(); }
+  vData(int y1, int m1, int d1, int h1, int y2, int m2, int d2, int h2, int op, int e) :
+    y1(y1), m1(m1), d1(d1), h1(h1), y2(y2), m2(m2), d2(d2), h2(h2), op(op), e(e) { p.clear(); }
 
-  vData(int y1, int m1, int d1, int h1, int y2, int m2, int d2, int h2, int op, vector <double> p) :
-    y1(y1), m1(m1), d1(d1), h1(h1), y2(y2), m2(m2), d2(d2), h2(h2), op(op), p(p) {}
+  vData(int y1, int m1, int d1, int h1, int y2, int m2, int d2, int h2, int op, int e, vector <double> p) :
+    y1(y1), m1(m1), d1(d1), h1(h1), y2(y2), m2(m2), d2(d2), h2(h2), op(op), p(p), e(e) {}
 
   ~ vData() = default;
 };
