@@ -1,6 +1,7 @@
 # include "../headfiles/data_structure.hpp"
 # include "../headfiles/exceptions.hpp"
 # include "../headfiles/tools.hpp"
+# include "../headfiles/prediction.hpp"
 # include "../headfiles/matrix.hpp"
 
 # include <iostream>
@@ -14,6 +15,7 @@ using namespace std;
 string station_name;
 
 int main() {
+  cout << "Please input station name: ";
   cin >> station_name;
   Record_List l(station_name);
 
@@ -37,7 +39,7 @@ int main() {
   Data_Testing :: output_test(l);  
   
   cout << "\n\nSelecting Training Data & Testing Data ...\n";
-  cout << "  Randomly choose 90% of the data as training data, the rest are testing data.\n";  
+  cout << "  Randomly choose 90% of the data as training data, the rest are testing data.\n"; 
   
   Record_List train_data(station_name), test_data(station_name);
   
@@ -52,8 +54,9 @@ int main() {
   Data_Testing :: output_test(train_data);
   cout << "Testing data: ";
   Data_Testing :: output_test(test_data);
+  cout << "\n\n";
   
-  Data_Prediction_LinearModel :: solver(train_data, test_data);
+  Data_Prediction_Model_ArgumentsSample :: solver(train_data, test_data);
   
   return 0;
 } 

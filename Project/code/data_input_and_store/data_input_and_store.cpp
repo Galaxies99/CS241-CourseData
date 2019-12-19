@@ -14,6 +14,7 @@ string station_name, s;
 char *str;
   
 int main() {
+  cout << "Please input station name: "; 
   cin >> station_name;
   Pre_Record_List l(station_name);
   cout << "Reading data ...\n";

@@ -2,7 +2,6 @@
 # include <string.h>
 # include <iostream>
 # include "matrix.hpp"
-
 using namespace std;
 
 typedef long long ll;
@@ -25,19 +24,17 @@ inline int getint() {
   return x*f;
 }
 
-
-
-int n;
+int n, m;
 
 int main() {
-  cin >> n;
-  Matrix a(n, n), b(n, n);
+  cin >> n >> m;
+  Matrix a(n, m);
   for (int i = 0; i < n; ++ i)
-    for (int j = 0; j < n; ++ j) cin >> a(i, j);
-  for (int i = 0; i < n; ++ i)
-    for (int j = 0; j < n; ++ j) cin >> b(i, j);
-  Matrix c = a * b;
-  c.output();
+    for (int j = 0; j < m; ++ j) cin >> a(i, j);
+  
+  Matrix b = a.exp();
+  b.output();
+
   return 0;
 }
 

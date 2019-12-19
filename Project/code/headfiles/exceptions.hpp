@@ -98,4 +98,13 @@ class Matrix_Error : public Exception {
     ~ Matrix_Error() = default;
 };
 
+class Func_Error : public Exception {
+  public:
+    Func_Error() = default;
+    const char *what() const {
+      return "Function Error!";
+    }
+    ~ Func_Error() = default;
+};
+
 # endif

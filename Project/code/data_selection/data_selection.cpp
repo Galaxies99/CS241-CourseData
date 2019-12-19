@@ -11,6 +11,7 @@ using namespace std;
 string station_name;
 
 int main() {
+  cout << "Please input station name: ";
   cin >> station_name;
   Pre_Record_List pl(station_name);
   cout << "Reading data ...\n";
