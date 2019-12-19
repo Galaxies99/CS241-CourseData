@@ -36,7 +36,7 @@ int main() {
   }
 
   cout << "Read data from \"" << station_name << ".dat\" successfully!\n\n";
-  Data_Selection_Testing :: output_test(l);
+  Data_Testing :: output_test(l);
 
   int op;
   cout << endl << endl;

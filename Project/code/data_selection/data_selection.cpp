@@ -30,7 +30,7 @@ int main() {
   }
   
   cout << "Read data from \"" << station_name << "_pre.dat\" successfully!\n\n";
-  Data_Selection_Testing :: output_test(pl);
+  Data_Testing :: output_test(pl);
   
   cout << "\nFiltering ...\n";
   Record_List l(station_name);
@@ -45,7 +45,7 @@ int main() {
   }
   cout << "Filter successfully!\n\n";
   
-  Data_Selection_Testing :: output_test(l);
+  Data_Testing :: output_test(l);
   
   cout << "\nStoring data ...\n";
   int n = l.rec.size();
