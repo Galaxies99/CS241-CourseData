@@ -117,6 +117,9 @@ class Matrix {
     Matrix exp() const;
     Matrix mul(const Matrix &b) const;
     Matrix pow(double b) const;
+    Matrix get_col(int j) const;
+    Matrix get_row(int i) const;
+    int getMaxX(int j) const;
     
     int get_n() const { return n; }
     int get_m() const { return m; }
@@ -133,6 +136,32 @@ class Matrix {
     
     ~ Matrix() = default;
 };
+
+Matrix Matrix :: get_col(int j) const {
+  if (j < 0 || j >= m) throw Matrix_Error();
+  Matrix ret(n, 1);
+  for (int i = 0; i < n; ++ i) ret(i, 0) = p[i][j];
+  return ret;
+}
+
+Matrix Matrix :: get_row(int i) const {
+  if (i < 0 || i >= n) throw Matrix_Error();
+  Matrix ret(1, m);
+  for (int j = 0; j < m; ++ j) ret(0, j) = p[i][j];
+  return ret;
+}
+
+int Matrix :: getMaxX(int j) const {
+  if(j < 0 || j >= m) throw Matrix_Error();
+  double cur_max = -2e9;
+  int pos = 0;
+  for (int i = 0; i < n; ++ i) 
+    if(cur_max < p[i][j]) {
+      cur_max = p[i][j];
+      pos = i;
+    }
+  return pos;
+} 
 
 double sum(const Matrix &a) {
   return a.sum();
