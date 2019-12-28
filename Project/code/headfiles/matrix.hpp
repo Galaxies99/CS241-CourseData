@@ -75,6 +75,7 @@ class Matrix {
       for (int i = 0; i < n; ++ i) 
         for (int j = 0; j < m; ++ j)
           p[i][j] = rhs(i, j);
+      return *this; 
     }
     
     void reset(int _n, int _m) {

@@ -11,8 +11,17 @@ using namespace std;
 string station_name;
 
 int main() {
-  cout << "Please input station name: ";
-  cin >> station_name;
+  cout << "Please choose a station: \n";
+  for (int i = 0; i < 12; ++ i) cout << "  " << (i + 1) << " - " << station_names[i] << endl;
+  int id; cin >> id;
+  if(id <= 0 || id > 12) {
+    cout << "Input Error!\n";
+    return 1;
+  }  
+  station_name = station_names[id - 1];
+  
+  cout << station_name << endl;
+  
   Pre_Record_List pl(station_name);
   cout << "Reading data ...\n";
   try {

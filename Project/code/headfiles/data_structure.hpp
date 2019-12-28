@@ -16,6 +16,10 @@ enum Wind {
   S, SSW, SW, WSW, W, WNW, NW, NNW
 };
 
+string station_names[] = {"Aotizhongxin", "Changping", "Dingling", "Dongsi",
+                          "Guanyuan", "Gucheng", "Huairou", "Nongzhanguan",
+                          "Shunyi", "Tiantan", "Wanliu", "Wanshouxigong"};
+
 string wind_to_string[] = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
                            "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
 

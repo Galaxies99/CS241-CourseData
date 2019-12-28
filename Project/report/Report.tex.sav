@@ -1,0 +1,76 @@
+\documentclass[CJK]{ctexart}
+\usepackage{CJK}
+\usepackage{amsmath}
+\usepackage{listings}
+\CTEXsetup[format={\Large\bfseries}]{section}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage[superscript]{cite}
+\usepackage{geometry}
+\usepackage{bm}
+\newtheorem{datastructure}{\hspace{2em}数据结构}[section]
+
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\geometry{left=4cm,right=4cm,top=1.5cm,bottom=1.5cm}
+
+\begin{document}
+\title{\textbf{CS241《问题求解与实践》期末大作业报告}}
+\author{518030910150 方泓杰}
+\date{Dec. 28th, 2019}
+\maketitle
+
+\section{任务要求}
+  根据提供的网站链接 https://www.kaggle.com/datasets ，选择其中一个数据集（视频、音频、图像相关数据除外），并分别完成以下任务： \par
+\begin{itemize}
+\item \textbf{数据输入和存储}：择取一个数据集并为之设计合适的数据结构，以便高效地存取相关数据；
+\item \textbf{脏数据的发现与处理}：你的数据集中是否存在脏数据？请定义一些标准发现并处理这些脏数据；
+\item \textbf{数据的统计与可视化}：对数据进行统计（至少从三个维度统计数据），并使用FLTK可视化统计后的数据；
+\item \textbf{趋势预测或分类}：设定目标，并使用课程中介绍的线性回归技术或者自学新的技术实现目标。你如何说明所用方法的准确性？
+\end{itemize}
+
+\section{数据集}
+本次大作业，我选择了关于 PM2.5 的数据集，该数据集内部提供了 2013年3月1日至2017年2月28日 间，北京市 12 个气象监测站的站点数据，每个数据包括时间（具体到小时）、PM2.5含量、PM10含量等的一系列空气污染物含量、以及当天的降雨量、温度、气压、风速等自然因素。 \par
+由于各监测站均处于北京市区及其周边地区，所以各监测站横向比较并没有显著差异，因此不进行监测站之间的横向比较，我们重点关注监测站监测到的 PM2.5 随时间、温度、压强等因素的关系。 \par
+
+\section{数据输入}
+
+\textbf{数据输入部分参见 code 文件夹下的 data\_input 子文件夹内的 data\_input.cpp 文件。用到的头文件包括 code 文件夹下的 headfiles 子文件夹内的 data\_structure.hpp 头文件和 tools.hpp 头文件和 exceptions.hpp 头文件。}
+
+\subsection{数据结构的设计}
+
+\textbf{数据结构的代码实现参见 headfiles 文件夹内的 data\_structure.hpp 头文件。}
+
+我们设计了如下数据结构用来存储数据：
+
+\begin{datastructure}[带数据缺失的数据结构]
+由于数据集中部分列存在着数据缺失的情况（以“NA”表示），故设计了一类模板 $Data\left<T\right>$ 来解决数据的统一存储问题。其由两个变量组成，分别表示是否存储有效值 $is\_rec$ 和存储的值 $dat$。如果 $is\_rec = 0$ 则 $dat$ 为默认值，数据缺失；如果 $is\_rec = 1$ 则 $dat$ 为实际存储的值，数据未缺失。
+\end{datastructure}
+
+\begin{datastructure}[一位小数的数据结构]
+由于数据集中大部分数据都是一位小数所构成，而利用 double 进行存储的精度低，而一位小数乘10即可成为整数，因此设计了存储一位小数的数据结构 $oDouble$。
+\end{datastructure}
+
+\begin{datastructure}[前数据 (Pre-record) 的数据结构]
+所谓前数据，就是未经任何处理的数据。在数据输入一步中，初始读入的数据应该用一种合适的数据结构进行存储，这种数据结构必须能够存储 NA（数据缺失的情况）、小数以及风向（特殊数据，用方向如 N, NE 等表示），因此利用类模板 Data 的实例化 $Data\left<double\right>$ 即可存储数据缺失的情况。对于风向我们用枚举类型进行存储即可。将这些数据组合在一起形成的类即为新数据结构，我们称之为存储前数据的数据结构。
+\end{datastructure}
+
+\begin{datastructure}[前数据表 (Pre-record List)]
+顾名思义，即前数据组成的列表，主要由存储前数据 (Pre-record) 的 vector 以及一个存储站点名的 string 构成，用来存储一个站点的所有前数据。
+\end{datastructure}
+
+\begin{datastructure} [真数据 (Record) 的数据结构]
+所谓真数据，就是经过脏数据处理后的数据。这时候我们将所有 double 类型转化为上文中的 oDouble 存储，用整型存储其他数据，用枚举类型存储风向，这些数据组合在一起的类即为新数据结构，我们称之为存储真数据的数据结构。
+\end{datastructure}
+
+\begin{datastructure} [真数据表 (Record List)]
+顾名思义，即真数据组成的列表，主要由存储真数据 (Record) 的 vector 以及一个存储站点名的 string 构成，用来存储一个站点的所有真数据。
+\end{datastructure}
+
+其他数据结构在后文中遇到我们时会继续说明。
+
+\subsection{数据输入}
+
+有了上节介绍的几种数据结构
+
+\end{document}

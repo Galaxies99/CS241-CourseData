@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1576835722 source:g:\galaxieswork\cs241-coursedata\project\code\data_visualization\main.cpp
+1577550649 source:g:\galaxieswork\cs241-coursedata\project\code\data_visualization\main.cpp
 	"../headfiles/GUI/Simple_window.h"
 	"../headfiles/GUI/Graph.h"
 	"../headfiles/GUI/Chart.hpp"
@@ -164,7 +164,7 @@
 	<vector>
 	<cmath>
 
-1576760094 g:\galaxieswork\cs241-coursedata\project\code\headfiles\data_structure.hpp
+1577550473 g:\galaxieswork\cs241-coursedata\project\code\headfiles\data_structure.hpp
 	<iostream>
 	<vector>
 	<string>
@@ -172,7 +172,7 @@
 
 1576768384 g:\galaxieswork\cs241-coursedata\project\code\headfiles\exceptions.hpp
 
-1576761874 g:\galaxieswork\cs241-coursedata\project\code\headfiles\tools.hpp
+1577551892 g:\galaxieswork\cs241-coursedata\project\code\headfiles\tools.hpp
 	<iostream>
 	<ctype.h>
 	<string>
@@ -228,7 +228,7 @@
 	<vector>
 	<cmath>
 
-1577019977 g:\galaxieswork\cs241-coursedata\project\code\headfiles\matrix.hpp
+1577540770 g:\galaxieswork\cs241-coursedata\project\code\headfiles\matrix.hpp
 	"exceptions.hpp"
 	"random.hpp"
 	<math.h>

@@ -11,7 +11,7 @@ CS241 问题求解与实践（中文班） Course Data
 
 作业地址：https://www.educoder.net/
 
-期末大作业正在进行中……
+期末大作业更新完成！
 
 Last Update on Dec. 1st.
 

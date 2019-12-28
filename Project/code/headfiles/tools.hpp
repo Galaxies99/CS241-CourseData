@@ -123,10 +123,10 @@ namespace Pre_Record_Generator {
 }
 
 namespace Pre_Record_Filter {
-  const double eps = 1e-8;
-
+  const double eps = 1e-3;
+  
   inline bool chk_data_valid(const Data <double> &p, int prod) {
-    double p_r = (static_cast <int> (p.get_data() * prod)) / static_cast <double> (prod);
+    double p_r = (static_cast <int> (p.get_data() * prod * 10000)) / static_cast <double> (prod * 10000);
     if(abs(p_r - p.get_data()) < eps) return true;
     else return false;
   }
