@@ -14,6 +14,7 @@ using std :: vector;
 using std :: string;
 using std :: cout;
 using std :: cin;
+using std :: endl;
 
 const double PI = acos(-1.0);
 
@@ -337,6 +338,14 @@ namespace Chart_Tools {
       ret += std :: to_string(c);
     }
     return ret;
+  }
+}
+
+namespace Basic_Tools {
+  void showVector(string label, vector<double> &v) {
+  	cout << label << " ";
+  	for(int i = 0; i < v.size(); ++i) cout << v[i] << " ";
+  	cout << endl;
   }
 }
 

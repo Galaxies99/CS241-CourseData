@@ -61,8 +61,7 @@ namespace Data_Prediction_LinearModel {
     int max_loss = 0;
     
     for (int i = 0; i < test_data.rec.size(); ++ i) {
-      int predict_number = static_cast <int> (E(i, 0) + 0.5);
-      if(predict_number < 0) predict_number = 0;
+      int predict_number = abs(static_cast <int> (E(i, 0) + 0.5));
       int loss = abs(predict_number - D(i, 0));
       aver += loss;
       aver2 += loss * loss; 
@@ -71,8 +70,18 @@ namespace Data_Prediction_LinearModel {
     aver /= test_data.rec.size();
     aver2 /= test_data.rec.size();
     aver2 = sqrt(aver2);
-    cout << "Average Loss: " << aver << '\n';
-    cout << "Average RMS Loss: " << aver2 << '\n';
+    cout << "RMS: " << aver2 << '\n';
+    
+    string optfilename = test_data.station + "_linear_prediction.csv";
+    cout << "\n\n Output to file " << optfilename << " ...\n";
+    File_Oper f_out(optfilename, "w");
+    fprintf(f_out.fp, "year,month,day,hour,PM10,SO2,NO2,CO,O3,TEMP,PRES,DEWP,RAIN,wd,WSPM,PM2.5,PM2.5 (Prediction),\n");
+    for (int i = 0; i < test_data.rec.size(); ++ i) {
+      fprintf(f_out.fp, "%d,%d,%d,%d,%d,%d,%d,%d,%d,", test_data.rec[i].year, test_data.rec[i].month, test_data.rec[i].day, test_data.rec[i].hour,
+                                                       test_data.rec[i].PM10, test_data.rec[i].SO2, test_data.rec[i].NO2, test_data.rec[i].CO, test_data.rec[i].O3);
+      fprintf(f_out.fp, "%.1lf,%.1lf,%.1lf,%.1lf,", test_data.rec[i].temp.get_data(), test_data.rec[i].pres.get_data(), test_data.rec[i].dewp.get_data(), test_data.rec[i].rain.get_data());
+      fprintf(f_out.fp, "%s,%.1lf,%d,%d,\n", wind_to_string[test_data.rec[i].wd].c_str(), test_data.rec[i].wspm.get_data(), test_data.rec[i].PM25, abs(static_cast <int> (E(i, 0) + 0.5)));
+    }
   } 
 }
 
@@ -111,7 +120,6 @@ namespace Data_Prediction_Model_ArgumentsSample {
     Matrix ATA_inv = ATA.inverse();
     cout << "Generating theta ......\n";
     Matrix theta = ATA_inv * AT * B;
-    theta.output();
     cout << "Testing ...";
     
     Matrix C(test_data.rec.size(), 21), D(test_data.rec.size(), 1);
@@ -145,8 +153,7 @@ namespace Data_Prediction_Model_ArgumentsSample {
     int max_loss = 0;
     
     for (int i = 0; i < test_data.rec.size(); ++ i) {
-      int predict_number = static_cast <int> (E(i, 0) + 0.5);
-      if(predict_number < 0) predict_number = 0;
+      int predict_number = abs(static_cast <int> (E(i, 0) + 0.5));
       int loss = abs(predict_number - D(i, 0));
       aver += loss;
       aver2 += loss * loss; 
@@ -155,8 +162,18 @@ namespace Data_Prediction_Model_ArgumentsSample {
     aver /= test_data.rec.size();
     aver2 /= test_data.rec.size();
     aver2 = sqrt(aver2);
-    cout << "Average Loss: " << aver << '\n';
-    cout << "Average RMS Loss: " << aver2 << '\n';
+    cout << "RMS: " << aver2 << '\n';
+    
+    string optfilename = test_data.station + "_arg_prediction.csv";
+    cout << "\n\n Output to file " << optfilename << " ...\n";
+    File_Oper f_out(optfilename, "w");
+    fprintf(f_out.fp, "year,month,day,hour,PM10,SO2,NO2,CO,O3,TEMP,PRES,DEWP,RAIN,wd,WSPM,PM2.5,PM2.5 (Prediction),\n");
+    for (int i = 0; i < test_data.rec.size(); ++ i) {
+      fprintf(f_out.fp, "%d,%d,%d,%d,%d,%d,%d,%d,%d,", test_data.rec[i].year, test_data.rec[i].month, test_data.rec[i].day, test_data.rec[i].hour,
+                                                       test_data.rec[i].PM10, test_data.rec[i].SO2, test_data.rec[i].NO2, test_data.rec[i].CO, test_data.rec[i].O3);
+      fprintf(f_out.fp, "%.1lf,%.1lf,%.1lf,%.1lf,", test_data.rec[i].temp.get_data(), test_data.rec[i].pres.get_data(), test_data.rec[i].dewp.get_data(), test_data.rec[i].rain.get_data());
+      fprintf(f_out.fp, "%s,%.1lf,%d,%d,\n", wind_to_string[test_data.rec[i].wd].c_str(), test_data.rec[i].wspm.get_data(), test_data.rec[i].PM25,  abs(static_cast <int> (E(i, 0) + 0.5)));
+    }
   } 
 }
 

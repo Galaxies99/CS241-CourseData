@@ -59,4 +59,4 @@ int main() {
   Data_Prediction_LinearModel :: solver(train_data, test_data);
   
   return 0;
-} 
+}  

@@ -12,6 +12,8 @@ using std :: cout;
 using std :: swap;
 using std :: vector;
 
+const double Matrix_eps = 1e-12;
+
 class Matrix {
     friend Matrix operator + (double a, const Matrix &b);
     friend Matrix operator + (const Matrix &a, double b);
@@ -33,7 +35,7 @@ class Matrix {
     friend Matrix mul(const Matrix &a, const Matrix &b);
     friend Matrix pow(const Matrix &a, double b);
     friend double sum(const Matrix &a);
-        
+    
   private:
     int n, m;
     vector <vector <double> > p;
@@ -75,6 +77,13 @@ class Matrix {
           p[i][j] = rhs(i, j);
     }
     
+    void reset(int _n, int _m) {
+      n = _n, m = _m;
+      p.resize(n);
+      for (int i = 0; i < n; ++ i) p[i].resize(m);
+      set_zero(); 
+    }
+    
     void set_zero() {
       for (int i = 0; i < n; ++ i)
         for (int j = 0; j < m; ++ j) p[i][j] = 0;
@@ -102,6 +111,9 @@ class Matrix {
     }
     
     void output() const;
+    
+    void normalize_col(int j);
+    void normalize_row(int i); 
 
     double sum() const {
       double ret = 0.0;
@@ -136,6 +148,20 @@ class Matrix {
     
     ~ Matrix() = default;
 };
+
+void Matrix :: normalize_col(int j) {
+  if(j < 0 || j >= m) throw Matrix_Error();
+  double minn = 2e9, maxx = -2e9;
+  for (int i = 0; i < n; ++ i) minn = std :: min(minn, p[i][j]), maxx = std :: max(maxx, p[i][j]);
+  for (int i = 0; i < n; ++ i) p[i][j] = (p[i][j] - minn) / (maxx - minn);
+}
+
+void Matrix :: normalize_row(int i) {
+  if(i < 0 || i >= n) throw Matrix_Error();
+  double minn = 2e9, maxx = -2e9;
+  for (int j = 0; j < m; ++ j) minn = std :: min(minn, p[i][j]), maxx = std :: max(maxx, p[i][j]);
+  for (int j = 0; j < m; ++ j) p[i][j] = (p[i][j] - minn) / (maxx - minn);
+}
 
 Matrix Matrix :: get_col(int j) const {
   if (j < 0 || j >= m) throw Matrix_Error();

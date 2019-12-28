@@ -126,7 +126,6 @@ struct Record {
   }
 
   ~ Record() = default;
-
 };
 
 /** Record List **/
@@ -202,5 +201,12 @@ struct vData {
   ~ vData() = default;
 };
 
+/** Record_with_prediction **/
+struct Record_with_prediction {
+  Record rec;
+  int prediction;
+  Record_with_prediction(const Record &rec, int prediction) : rec(rec), prediction(prediction) {}
+  ~ Record_with_prediction() = default;
+};
 
 # endif

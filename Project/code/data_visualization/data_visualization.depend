@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1576680784 source:g:\galaxieswork\cs241-coursedata\project\code\data_visualization\main.cpp
+1576835722 source:g:\galaxieswork\cs241-coursedata\project\code\data_visualization\main.cpp
 	"../headfiles/GUI/Simple_window.h"
 	"../headfiles/GUI/Graph.h"
 	"../headfiles/GUI/Chart.hpp"
@@ -164,19 +164,20 @@
 	<vector>
 	<cmath>
 
-1576681041 g:\galaxieswork\cs241-coursedata\project\code\headfiles\data_structure.hpp
+1576760094 g:\galaxieswork\cs241-coursedata\project\code\headfiles\data_structure.hpp
 	<iostream>
 	<vector>
 	<string>
 	"exceptions.hpp"
 
-1576584737 g:\galaxieswork\cs241-coursedata\project\code\headfiles\exceptions.hpp
+1576768384 g:\galaxieswork\cs241-coursedata\project\code\headfiles\exceptions.hpp
 
-1576681140 g:\galaxieswork\cs241-coursedata\project\code\headfiles\tools.hpp
+1576761874 g:\galaxieswork\cs241-coursedata\project\code\headfiles\tools.hpp
 	<iostream>
 	<ctype.h>
 	<string>
 	<math.h>
+	"matrix.hpp"
 	"data_structure.hpp"
 	"exceptions.hpp"
 
@@ -217,7 +218,7 @@
 	"Graph.h"
 	"GUI.h"
 
-1576682056 g:\galaxieswork\cs241-coursedata\project\code\headfiles\gui\chart.hpp
+1576682143 g:\galaxieswork\cs241-coursedata\project\code\headfiles\gui\chart.hpp
 	"Graph.h"
 	"../data_structure.hpp"
 	"../exceptions.hpp"
@@ -226,4 +227,15 @@
 	<assert.h>
 	<vector>
 	<cmath>
+
+1577019977 g:\galaxieswork\cs241-coursedata\project\code\headfiles\matrix.hpp
+	"exceptions.hpp"
+	"random.hpp"
+	<math.h>
+	<vector>
+	<iostream>
+
+1576771140 g:\galaxieswork\cs241-coursedata\project\code\headfiles\random.hpp
+	<stdlib.h>
+	<math.h>
 
